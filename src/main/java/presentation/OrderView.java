@@ -93,16 +93,22 @@ public class OrderView extends JFrame {
     private void populateDropdowns() {
         List<Client> clients = clientBL.findAllClients();
         if (clients != null) {
-            for (Client c : clients) {
-                cbClients.addItem(c.getId() + " - " + c.getName());
-            }
+//            for (Client c : clients) {
+//                cbClients.addItem(c.getId() + " - " + c.getName());
+//            }
+            clients.stream()
+                    .map(c -> c.getId() + " - " + c.getName())
+                    .forEach(cbClients::addItem);
         }
 
         List<Product> products = productBL.findAllProducts();
         if (products != null) {
-            for (Product p : products) {
-                cbProducts.addItem(p.getId() + " - " + p.getName() + " (Stock: " + p.getStock() + ")");
-            }
+//            for (Product p : products) {
+//                cbProducts.addItem(p.getId() + " - " + p.getName() + " (Stock: " + p.getStock() + ")");
+//            }
+            products.stream()
+                    .map(p -> p.getId() + " - " + p.getName() + " (Stock: " + p.getStock() + ")")
+                    .forEach(cbProducts::addItem);
         }
     }
 
